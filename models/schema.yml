@@ -5,10 +5,54 @@
  sources:
    - name: raw
      schema: gz_raw_data
+     description: raw data from exercice 3 Le Wagon
      tables:
        - name: sales
          identifier : raw_gz_sales
+         description: sales of Greenweez / we have on row per product_id found in each orders_id
+         loaded_at_field: "CAST (date_date AS TIMESTAMP)"
+         freshness:
+            warn_after:
+              count: 90
+              period: day
+         columns:
+           - name: date_date
+             description: date of purchase
+           - name: orders_id
+             description: number of the order
+           - name: products_id
+             description: number of the product
+           - name: revenue
+             description: price of the order
+           - name: quantity
+             description: number of product in the order
        - name: product
+         tests:
+           - unique:
+               column_name: products_id
+           - not_null:
+               column_name: products_id
          identifier : raw_gz_product
+         description: product of Greenweez / we have on row per product_id found in each purchase_price
+         columns:
+           - name: products_id
+             description: number of the product
+           - name: purchase_price
+             description: buy cost of the product
        - name: ship
+         tests:
+           - unique:
+               column_name: orders_id
+           - not_null:
+               column_name: orders_id
          identifier : raw_gz_ship
+         description: ship of Greenweez / we have on row with orders_id, shipping_fee, logcost and ship_cost
+         columns:
+           - name: orders_id
+             description: number of the order
+           - name: shipping_fee
+             description: fee on shipping from Greenweez to customer paid by the customer
+           - name: logcost
+             description: logistical cost of the order
+           - name: ship_cost
+             description: cost from the seller to Greenweez paid by Greenweez
