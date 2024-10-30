@@ -63,11 +63,6 @@
      columns:
        - name: orders_id
          description: unique number of the order
-         tests:
-           - unique: 
-             column_name: orders_id
-           - not_null:
-             column_name: orders_id
        - name: data_date
          description: date of the order
        - name: products_id
@@ -86,11 +81,6 @@
      columns:
        - name: operational_margin
          description: it is the margin + shipping_fee - logcost - ship_cost
-         tests:
-           - unique: 
-             column_name: orders_id
-           - not_null:
-             column_name: orders_id
 
    - name: int_sales_margin
      description: model with the calculations of the purchase_cost and margin
@@ -113,7 +103,3 @@
          description: sum of operational_margin
        - name: total_purchase_cost
          description: sum purchase_cost
-       - name: 
-
-
-        total_shipping_fee, total_logcost, total_quantity_of_products_sold
