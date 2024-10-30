@@ -56,3 +56,64 @@
              description: logistical cost of the order
            - name: ship_cost
              description: cost from the seller to Greenweez paid by Greenweez
+
+ models:
+   - name: int_orders_margin
+     description: model with revenue, quantity and purchase_cost calculations
+     columns:
+       - name: orders_id
+         description: unique number of the order
+         tests:
+           - unique: 
+             column_name: orders_id
+           - not_null:
+             column_name: orders_id
+       - name: data_date
+         description: date of the order
+       - name: products_id
+         description: unique number of the product
+       - name: revenue
+         description: revenue of the order
+       - name: quantity
+         description: quantity of products in the order
+       - name: purchase_cost
+         description: it is the quantity multiplied by the purchase_price
+       - name: margin
+         description: it is the revenue - purchase_cost
+
+   - name: int_orders_operational
+     description: model with operational margin calculations
+     columns:
+       - name: operational_margin
+         description: it is the margin + shipping_fee - logcost - ship_cost
+         tests:
+           - unique: 
+             column_name: orders_id
+           - not_null:
+             column_name: orders_id
+
+   - name: int_sales_margin
+     description: model with the calculations of the purchase_cost and margin
+     columns:
+       - name: purchase_cost
+         description: it is quantity multiplied with the purchase_price
+       - name: margin
+         description: it is the revenue - purchase_cost
+
+   - name: finance_days
+     description: model updated everyday with total_number_of_transactions, total_revenue, average_basket, total_operational_margin, total_purchase_cost, total_shipping_fee, total_logcost, total_quantity_of_products_sold
+     columns:
+       - name: total_number_of_transactions
+         description: sum of transactions of the day
+       - name: total_revenue
+         description: sum of revenue of the day
+       - name: average_basket
+         description: average_basket of the day
+       - name: total_operational_margin
+         description: sum of operational_margin
+       - name: total_purchase_cost
+         description: sum purchase_cost
+       - name: 
+
+
+        total_shipping_fee, total_logcost, total_quantity_of_products_sold
