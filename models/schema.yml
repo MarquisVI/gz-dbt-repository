@@ -239,3 +239,16 @@
              description: impressions from ads for each day
            - name: ads_clicks
              description: clicks from ads for each day
+
+   - name: finance_campaign_day
+     description: finance table with ads_margin calculation
+     tests:
+          - unique:
+              column_name: date_date
+          - not_null:
+              column_name: date_date
+     columns:
+           - name: date_date
+             description: date of each campaign
+           - name: ads_margin
+             description: margin on each ad
