@@ -1,6 +1,6 @@
 SELECT
     orders_id
-    ,data_date
+    ,date_date
     ,products_id
     ,SUM(revenue) AS revenue
     ,SUM(quantity) AS quantity
